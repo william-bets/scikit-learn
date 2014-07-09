@@ -18,7 +18,7 @@ from .coordinate_descent import (Lasso, ElasticNet, LassoCV, ElasticNetCV,
                                  lasso_path, enet_path, MultiTaskLasso,
                                  MultiTaskElasticNet, MultiTaskElasticNetCV,
                                  MultiTaskLassoCV)
-from .sgd_fast import Hinge, Log, ModifiedHuber, SquaredLoss, Huber
+from .sgd_fast import Hinge, Log, ModifiedHuber, SquaredLoss, Huber, IndicatorLoss
 from .stochastic_gradient import SGDClassifier, SGDRegressor
 from .ridge import (Ridge, RidgeCV, RidgeClassifier, RidgeClassifierCV,
                     ridge_regression)
