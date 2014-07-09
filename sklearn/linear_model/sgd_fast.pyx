@@ -224,9 +224,8 @@ cdef class Log(Classification):
     def __reduce__(self):
         return Log, ()
 
-cdef class IndicatorLoss(Classification):
+cdef class IndicatorLoss(Regression):
     """snoopy boy loss"""
-
     cdef double loss(self, double p, double y) nogil:
         cdef double indicator = 1/(1+exp(-2*(p+0.5))) + 1/(1+exp(-2*(p-0.5)))
         return -y*indicator + 0.5*fabs(indicator) + 1

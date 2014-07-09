@@ -31,7 +31,7 @@ from .sgd_fast import SquaredLoss
 from .sgd_fast import Huber
 from .sgd_fast import EpsilonInsensitive
 from .sgd_fast import SquaredEpsilonInsensitive
-
+from .sgd_fast import IndicatorLoss
 
 LEARNING_RATE_TYPES = {"constant": 1, "optimal": 2, "invscaling": 3,
                        "pa1": 4, "pa2": 5}
@@ -286,6 +286,7 @@ class BaseSGDClassifier(six.with_metaclass(ABCMeta, BaseSGD,
         "log": (Log, ),
         "modified_huber": (ModifiedHuber, ),
         "squared_loss": (SquaredLoss, ),
+        "indicator_loss": (IndicatorLoss, ),
         "huber": (Huber, DEFAULT_EPSILON),
         "epsilon_insensitive": (EpsilonInsensitive, DEFAULT_EPSILON),
         "squared_epsilon_insensitive": (SquaredEpsilonInsensitive,
@@ -752,6 +753,7 @@ class BaseSGDRegressor(BaseSGD, RegressorMixin):
 
     loss_functions = {
         "squared_loss": (SquaredLoss, ),
+        "indicator_loss": (IndicatorLoss, ),
         "huber": (Huber, DEFAULT_EPSILON),
         "epsilon_insensitive": (EpsilonInsensitive, DEFAULT_EPSILON),
         "squared_epsilon_insensitive": (SquaredEpsilonInsensitive,
