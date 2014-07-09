@@ -232,11 +232,15 @@ cdef class IndicatorLoss(Classification):
         return -y*indicator + 0.5*fabs(indicator) + 1
 
     cdef double _dloss(self, double p, double y) nogil:
+        cdef double indicator = 1/(1+exp(-2*(p+0.5))) + 1/(1+exp(-2*(p-0.5)))
         cdef double d_indicator = -2*exp(-2*(p+0.5))/pow(1+exp(-2*(p+0.5)),2) + -2*exp(-2*(p-0.5))/pow(1+exp(-2*(p-0.5)),2)
-        return -y / (exp(z) + 1.0)
+        if indicator > 0:
+            return (-y+0.5)*d_indicator
+        if indicator < 0:
+            return (-y-0.5)*d_indicator
 
     def __reduce__(self):
-        return Log, ()
+        return IndicatorLoss, ()
 
 
 cdef class SquaredLoss(Regression):
